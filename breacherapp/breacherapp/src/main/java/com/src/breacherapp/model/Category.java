@@ -17,7 +17,7 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 @Entity
 @Table
 @EntityListeners(AuditingEntityListener.class)
-public class BusinessArea implements Serializable {
+public class Category implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
@@ -29,11 +29,6 @@ public class BusinessArea implements Serializable {
 	@Column
 	private String name;
 
-	@ManyToOne
-	@JoinColumn(name="busarea_category")
-	private Category category;
-
-	
 	public Long getId() {
 		return id;
 	}
