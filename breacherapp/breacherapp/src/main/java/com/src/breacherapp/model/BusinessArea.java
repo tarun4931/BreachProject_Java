@@ -1,6 +1,7 @@
 package com.src.breacherapp.model;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -10,6 +11,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
@@ -29,9 +31,9 @@ public class BusinessArea implements Serializable {
 	@Column
 	private String name;
 
-	@ManyToOne
+	@OneToMany
 	@JoinColumn(name="busarea_category")
-	private Category category;
+	private List<Category> category;
 
 	
 	public Long getId() {
@@ -48,5 +50,13 @@ public class BusinessArea implements Serializable {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public List<Category> getCategory() {
+		return category;
+	}
+
+	public void setCategory(List<Category> category) {
+		this.category = category;
 	}
 }

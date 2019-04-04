@@ -1,6 +1,7 @@
 package com.src.breacherapp.model;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -8,7 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -25,9 +26,9 @@ public class Franchise implements Serializable {
 	@Column
 	private String name;
 	
-	@ManyToOne
+	@OneToMany
 	@JoinColumn(name="franch_busarea")
-	private BusinessArea busArea;
+	private List<BusinessArea> busArea;
 	
 	public Long getId() {
 		return id;
@@ -41,10 +42,10 @@ public class Franchise implements Serializable {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public BusinessArea getBusArea() {
+	public List<BusinessArea> getBusArea() {
 		return busArea;
 	}
-	public void setBusArea(BusinessArea busArea) {
+	public void setBusArea(List<BusinessArea> busArea) {
 		this.busArea = busArea;
 	}
 }
