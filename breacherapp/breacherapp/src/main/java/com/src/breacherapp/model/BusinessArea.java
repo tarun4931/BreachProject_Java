@@ -6,6 +6,7 @@ import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -31,8 +32,7 @@ public class BusinessArea implements Serializable {
 	@Column
 	private String name;
 
-	@OneToMany
-	@JoinColumn(name="busarea_category")
+	@OneToMany(fetch=FetchType.EAGER)
 	private List<Category> category;
 
 	

@@ -8,10 +8,8 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBuilder;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
@@ -30,26 +28,12 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 @SpringBootApplication
 @EnableSwagger2
-@ComponentScan
-@EnableAutoConfiguration
 @EnableWebMvc
 @EnableJpaRepositories
 public class BreacherappApplication extends WebMvcConfigurerAdapter {
 
-	@Value("${hibernate.dialect}")
-	public String hibernateDialect;
-
-	@Value("${hibernate.hbm2ddl.auto}")
-	public String hbdm2DDL;
-
-	@Value("${hibernate.show_sql}")
-	public String showSQL;
-
 	@Value("${hibernate.models.package}")
 	public String modelsPackage;
-
-	@Autowired
-	Properties properties;
 
 	public static void main(String[] args) {
 		SpringApplication.run(BreacherappApplication.class, args);
@@ -58,10 +42,6 @@ public class BreacherappApplication extends WebMvcConfigurerAdapter {
 	@Bean(name = "sessionFactory")
 	public SessionFactory getSessionFactory(DataSource dataSource) {
 		LocalSessionFactoryBuilder sessionBuilder = new LocalSessionFactoryBuilder(dataSource);
-		properties.setProperty("hibernate.dialect", hibernateDialect);
-		properties.setProperty("hibernate.hbm2ddl.auto", hbdm2DDL);
-		properties.setProperty("hibernate.show_sql", showSQL);
-		sessionBuilder.addProperties(properties);
 		sessionBuilder.scanPackages(modelsPackage);
 		return sessionBuilder.buildSessionFactory();
 	}
