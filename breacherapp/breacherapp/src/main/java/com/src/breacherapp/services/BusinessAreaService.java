@@ -14,6 +14,6 @@ public class BusinessAreaService {
 	FranchiseDAO franchDAO;
 
 	public List<BusinessArea> getBusinessByFranchiseId(Long id) {
-		return franchDAO.getAll().stream().filter(c->c.getId()==id).findFirst().get().getBusArea();
+		return franchDAO.getAll().stream().filter(c->c.getId().equals(id)).findFirst().get().getBusArea();
 	}
 }
